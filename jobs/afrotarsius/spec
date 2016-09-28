@@ -2,3 +2,5 @@
 name: afrotarsius
 templates:
   network_latency.sh.erb: bin/network_latency.sh
+
+properties: {}
