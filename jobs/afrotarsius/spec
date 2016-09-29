@@ -3,4 +3,10 @@ name: afrotarsius
 templates:
   network_latency.sh.erb: bin/network_latency.sh
 
-properties: {}
+properties:
+  tarsii.afrotarsius.delay:
+    description: "the network delay in ms"
+    default: 1000ms
+  tarsii.afrotarsius.jitter:
+    description: "the jitter in network delay in ms"
+    default: 500ms
