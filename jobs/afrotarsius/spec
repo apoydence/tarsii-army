@@ -6,7 +6,7 @@ templates:
 properties:
   tarsii.afrotarsius.delay:
     description: "the network delay in ms"
-    default: 1000ms
+    default: 1000
   tarsii.afrotarsius.jitter:
     description: "the jitter in network delay in ms"
-    default: 500ms
+    default: 500
