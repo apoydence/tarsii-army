@@ -1,0 +1,5 @@
+check process afrotarsius
+  with pidfile /var/vcap/sys/run/afrotarsius/afrotarsius.pid
+  start program "/var/vcap/jobs/afrotarsius/bin/network_latency.sh start"
+  stop program "/var/vcap/jobs/afrotarsius/bin/network_latency.sh stop"
+group vcap

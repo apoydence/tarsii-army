@@ -1,0 +1,38 @@
+#!/bin/bash
+
+RUN_DIR=/var/vcap/sys/run/eosimias
+PIDFILE=$RUN_DIR/eosimias.pid
+
+mkdir -p $RUN_DIR
+
+PERCENTAGE=<%=p("tarsii.eosimias.percentage")%>%
+CORRELATION=<%=p("tarsii.eosimias.correlation")%>%
+
+function do_delay {
+    sleep 60
+
+    tc qdisc delete dev eth0 root netem || true
+
+    tc qdisc add dev eth0 root netem loss $PERCENTAGE $CORRELATION
+
+    until [ `tc qdisc show dev eth0 | grep netem | wc -l` -eq 0 ]; do sleep 10; done
+}
+
+case $1 in
+
+  start)
+    do_delay &
+
+    echo $! > $PIDFILE
+    ;;
+
+  stop)
+    tc qdisc delete dev eth0 root netem || true
+    ;;
+
+  *)
+    echo "Usage: network_loss.sh {start|stop}"
+
+    ;;
+
+esac

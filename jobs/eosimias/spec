@@ -1,0 +1,12 @@
+---
+name: eosimias
+templates:
+  network_loss.sh.erb: bin/network_loss.sh
+
+properties:
+  tarsii.eosimias.percent:
+    description: "the network loss percentage"
+    default: 7
+  tarsii.eosimias.correlation:
+    description: "the network loss correlation percentage"
+    default: 25
