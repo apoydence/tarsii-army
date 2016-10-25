@@ -2,6 +2,7 @@
 
 RUN_DIR=/var/vcap/sys/run/afrotarsius
 PIDFILE=$RUN_DIR/afrotarsius.pid
+ETHERNET_DEVICE=`ifconfig | grep -m1 encap:Ethernet | awk '{print $1}'`
 
 mkdir -p $RUN_DIR
 
@@ -11,11 +12,11 @@ NETWORK_JITTER=<%=p("tarsii.afrotarsius.jitter")%>ms
 function do_delay {
     sleep 60
 
-    tc qdisc delete dev eth0 root netem || true
+    tc qdisc delete dev $ETHERNET_DEVICE root netem || true
 
-    tc qdisc add dev eth0 root netem delay $NETWORK_DELAY $NETWORK_JITTER
+    tc qdisc add dev $ETHERNET_DEVICE root netem delay $NETWORK_DELAY $NETWORK_JITTER
 
-    until [ `tc qdisc show dev eth0 | grep netem | wc -l` -eq 0 ]; do sleep 10; done
+    until [ `tc qdisc show dev $ETHERNET_DEVICE | grep netem | wc -l` -eq 0 ]; do sleep 10; done
 }
 
 case $1 in
@@ -27,7 +28,7 @@ case $1 in
     ;;
 
   stop)
-    tc qdisc delete dev eth0 root netem || true
+    tc qdisc delete dev $ETHERNET_DEVICE root netem || true
     ;;
 
   *)
