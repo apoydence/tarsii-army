@@ -1,0 +1,30 @@
+#!/bin/bash
+
+RUN_DIR=/var/vcap/sys/run/bahinia
+PIDFILE=$RUN_DIR/bahinia.pid
+mkdir -p $RUN_DIR
+
+TASKS=<%=p("tarsii.bahinia.tasks")%>
+
+case $1 in
+
+  start)
+    # $TASKS parallel 100% CPU tasks
+    for i in $(seq "$TASKS")
+    do
+        while : ; do : ; done &
+        echo $! >> $PIDFILE
+    done
+    ;;
+
+  stop)
+    kill $(cat $PIDFILE)
+    > $PIDFILE
+    ;;
+
+  *)
+    echo "Usage: $0 {start|stop}"
+
+    ;;
+
+esac

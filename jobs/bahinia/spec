@@ -1,0 +1,9 @@
+---
+name: bahinia
+templates:
+  burn_cpu.sh.erb: bin/burn_cpu.sh
+
+properties:
+  tarsii.bahinia.tasks:
+    description: "the number of 100% cpu tasks"
+    default: 2

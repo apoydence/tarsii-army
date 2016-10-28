@@ -1,0 +1,5 @@
+check process bahinia
+  with pidfile /var/vcap/sys/run/bahinia/bahinia.pid
+  start program "/var/vcap/jobs/bahinia/bin/burn_cpu.sh start"
+  stop program "/var/vcap/jobs/bahinia/bin/burn_cpu.sh stop"
+group vcap
