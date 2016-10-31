@@ -1,5 +1,5 @@
-check process afrotarsius
-  with pidfile /var/vcap/sys/run/afrotarsius/afrotarsius.pid
-  start program "/var/vcap/jobs/afrotarsius/bin/network_latency.sh start"
-  stop program "/var/vcap/jobs/afrotarsius/bin/network_latency.sh stop"
+check process eosimias
+  with pidfile /var/vcap/sys/run/eosimias/eosimias.pid
+  start program "/var/vcap/jobs/eosimias/bin/network_loss.sh start"
+  stop program "/var/vcap/jobs/eosimias/bin/network_loss.sh stop"
 group vcap

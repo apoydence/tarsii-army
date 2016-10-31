@@ -6,7 +6,7 @@ ETHERNET_DEVICE=`ifconfig | grep -m1 encap:Ethernet | awk '{print $1}'`
 
 mkdir -p $RUN_DIR
 
-PERCENTAGE=<%=p("tarsii.eosimias.percentage")%>%
+PERCENT=<%=p("tarsii.eosimias.percent")%>%
 CORRELATION=<%=p("tarsii.eosimias.correlation")%>%
 
 function do_delay {
@@ -14,7 +14,7 @@ function do_delay {
 
     tc qdisc delete dev $ETHERNET_DEVICE root netem || true
 
-    tc qdisc add dev $ETHERNET_DEVICE root netem loss $PERCENTAGE $CORRELATION
+    tc qdisc add dev $ETHERNET_DEVICE root netem loss $PERCENT $CORRELATION
 
     until [ `tc qdisc show dev $ETHERNET_DEVICE | grep netem | wc -l` -eq 0 ]; do sleep 10; done
 }
