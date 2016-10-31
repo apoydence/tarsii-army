@@ -10,3 +10,6 @@ This monkey runs the `tc` command. It will introduce latency (1 second +- 50%) t
 
 ### Esosimias (Network Loss)
 This monkey runs the `tc` command. It will introduce loss (7% with 25% correlation) to outgoing network packets.
+
+### Bahinia (Burn CPU)
+This monkey runs a specified number of 100% cpu scripts.
